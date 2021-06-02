@@ -1,0 +1,26 @@
+{
+  "name": "remarkable-tags",
+  "version": "1.0.0",
+  "description": "A hashtag extension for remarkable",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha"
+  },
+  "keywords": [
+    "remarkable",
+    "remarkable-extension",
+    "hashtag"
+  ],
+  "author": "Matthew Steedman",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/knubie/remarkable-tags.git"
+  },
+  "devDependencies": {
+    "http-server": "^0.9.0",
+    "mocha": "^3.2.0",
+    "remarkable": "^1.7.1",
+    "webpack": "^2.2.1"
+  }
+}
