@@ -13,10 +13,31 @@ describe('Tags', function () {
     );
   });
 
-  it("Should produce a tag", function () {
+  it("Should produce a tag in text", function () {
     assert.strictEqual(
       md.render('Some #foobar here.'),
       '<p>Some <tag name="foobar"/> here.</p>\n'
+    );
+  });
+
+  it("Should produce a tag at the end of a line", function () {
+    assert.strictEqual(
+      md.render('Hello #world'),
+      '<p>Hello <tag name="world"/></p>\n'
+    );
+  });
+
+  it("Should produce a tag at the end of a line with a new line after.", function () {
+    assert.strictEqual(
+      md.render('Hello #world\nOh hi there.'),
+      '<p>Hello <tag name="world"/>\nOh hi there.</p>\n'
+    );
+  });
+
+  it("Should produce a tag after a new line", function () {
+    assert.strictEqual(
+      md.render('Hello\n#world'),
+      '<p>Hello\n<tag name="world"/></p>\n'
     );
   });
 

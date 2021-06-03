@@ -1,3 +1,6 @@
+function isTerminalChar(charCode) {
+  return charCode === 0x20/* space */ || charCode === 10/* \n */ || charCode === 13/* \r */
+}
 module.exports = function parser(state, silent) {
   var ch, code, match, pos = state.pos, max = state.posMax;
 
@@ -7,14 +10,14 @@ module.exports = function parser(state, silent) {
   var start = pos;
   lastChar = start > 0 ? state.src.charCodeAt(start - 1) : 0x20/* space */;
   nextChar = state.src.charCodeAt(start + 1);
-  if (lastChar !== 0x20/* space */) { return false; }
-  if (nextChar === 0x20/* space */) { return false; }
+  if (!isTerminalChar(lastChar)) { return false; }
+  if (isTerminalChar(nextChar)) { return false; }
 
   name_start = start + 1
   pos = name_start
 
   while (pos + 1 < max) {
-    if (state.src.charCodeAt(pos + 1) === 0x20/* space */) {
+    if (isTerminalChar(state.src.charCodeAt(pos + 1))) {
       break;
     }
     pos++;
