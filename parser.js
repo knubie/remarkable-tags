@@ -1,9 +1,11 @@
 function isTerminalChar(charCode) {
-  return charCode === 0x20/* space */ || charCode === 10/* \n */ || charCode === 13/* \r */
+  return charCode === 0x20/* space */ || charCode === 10/* \n */ || charCode === 13/* \r */;
 }
 module.exports = function parser(state, silent) {
   var ch, code, match, pos = state.pos, max = state.posMax;
 
+  if (state.linkLevel > 0) { return false; }
+  if (state.isInLabel) { return false; }
   if (state.src.charCodeAt(pos) !== 35/* # */) { return false; }
   if (pos + 1 >= max) { return false; }
 

@@ -68,4 +68,18 @@ describe('Tags', function () {
       '<p><tag name="日本語"/></p>\n'
     );
   });
+
+  it("Should not parse in link titles", function () {
+    assert.strictEqual(
+      md.render('[untitled #82.mp3](foo.jpg)'),
+      '<p><a href="foo.jpg">untitled #82.mp3</a></p>\n'
+    );
+  });
+
+  it("Should not parse in image titles", function () {
+    assert.strictEqual(
+      md.render('![untitled #82.mp3](foo.jpg)'),
+      '<p><img src="foo.jpg" alt="untitled #82.mp3"></p>\n'
+    );
+  });
 });
